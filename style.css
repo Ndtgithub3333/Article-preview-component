@@ -19,6 +19,8 @@ body {
     width: 100vw;
     height: 100vh;
     font-family: 'Manrope', sans-serif;
+    background-color: var(--Grayish-Blue);
+
 
 }
 
@@ -28,7 +30,6 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: var(--Grayish-Blue);
 }
 
 .card {
@@ -48,7 +49,7 @@ body {
 .card__img {
     border-radius: 15px 0 0 15px;
     overflow: hidden;
- 
+
 }
 
 .card__img img {
@@ -81,6 +82,7 @@ body {
 
 .card__content__author {
     display: flex;
+    position: relative;
     align-items: center;
 
 }
@@ -114,9 +116,7 @@ body {
     cursor: pointer;
 }
 
-.card__share:hover .card__content__share {
-    border: 1px dashed black;
-}
+
 
 .card__content__share__list {
     position: absolute;
@@ -143,15 +143,15 @@ body {
     transform: translateX(-50%) rotate(45deg);
 }
 
-.card__content__share__list::before {
+.card__share::before {
     position: absolute;
-    ;
     content: "";
     width: 251px;
-    height: 25px;
-    background-color: transparent;
-    right: 0;
-    bottom: -25px;
+    height: 35px;
+    background-color: transparent !important;
+    /* right: -24px; */
+    left: -109px;
+    top: -32px;
 }
 
 .card__share__text {
@@ -182,11 +182,19 @@ body {
 
 }
 
+.hidden {
+    display: none;
+}
 
 
-.card__share:hover .card__content__share__list {
+.card__share:hover  ~ .card__content__share__list {
     display: flex;
 }
+
+.card__content__share__list:hover {
+    display: flex;
+}
+
 
 
 @media screen and (max-width: 768px) {
@@ -194,20 +202,54 @@ body {
         flex-direction: column;
         width: 450px;
         min-width: 450px;
-       
+
 
     }
-
     .card__img {
-        border-radius: 15px  15px 0 0;
+        border-radius: 15px 15px 0 0;
     }
-
-    .card__share:hover  ~ .card__content__author {
+    .card__content__share__list {
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        display: none;
+        margin-top: 0px;
+    }
+    .card__content__share__list::after {
         display: none;
     }
-    .card__share:hover .card__content__author__name{
+
+    .card__content{
+        padding: 0;
+    }
+
+    .card__content__title, .card__content__text {
+        padding: 5px 20px 0;
+        margin-bottom: 10px;
+    }
+
+    .card__content__text {
+        margin-bottom: 30px;
+    }
+
+    .card__content__author {
+        padding: 0 20px 30px 20px;
+    }
+
+    .card__content__share__list {
+        border-radius: 0 0 15px 15px;
+    }
+
+    .card__share:hover  ~ .card__content__share__list {
         display: none;
     }
 
-   
+    .card__share:active  ~ .card__content__share__list {
+        display: flex;
+    }
+    
+    
+
 }
